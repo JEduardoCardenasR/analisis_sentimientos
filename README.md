@@ -9,8 +9,9 @@ El modelo está construido sobre el popular conjunto de datos **IMDB Dataset**, 
 ## 🚀 Características del Proyecto
 
 *   **Balanceo de Clases:** Selección de un subconjunto equitativo de 10,000 reseñas (5,000 positivas y 5,000 negativas) para garantizar un entrenamiento balanceado.
-*   **Procesamiento de Texto (TF-IDF):** Extracción de características numéricas mediante *Term Frequency - Inverse Document Frequency* (`TfidfVectorizer`), eliminando palabras vacías (*stop words*) en inglés.
+*   **Procesamiento de Texto (TF-IDF):** Extracción de características numéricas mediante *Term Frequency - Inverse Document Frequency* (`TfidfVectorizer`).
 *   **Clasificador de Soporte Vectorial (SVM):** Uso de una máquina de vectores de soporte (`SVC`) con núcleo lineal para realizar la clasificación, un algoritmo altamente eficiente para datos de texto de alta dimensionalidad.
+*   **Comparación de clasificadores:** Los mismos vectores TF-IDF se usan para entrenar `LogisticRegression`, `GaussianNB` y `DecisionTreeClassifier`, y contrastar si la SVM es la mejor opción.
 *   **Evaluación Completa:** Cálculo de métricas estándar en ciencia de datos como precisión (*Accuracy*), puntuación F1 (*F1-Score*), reporte detallado de clasificación y matriz de confusión.
 
 ---
@@ -76,7 +77,7 @@ El cuaderno [`1_analisis_sentimiento.ipynb`](./1_analisis_sentimiento.ipynb) est
 1.  **Carga de Datos:** Lectura del archivo `IMDB Dataset.csv` desde la carpeta `data/`.
 2.  **Exploración y Filtrado:** Inspección inicial de los datos y extracción de un subconjunto balanceado de 10,000 reseñas para agilizar el procesamiento sin sacrificar la representatividad.
 3.  **División de Datos:** Separación de los datos en conjuntos de **entrenamiento (67%)** y **prueba (33%)** con `train_test_split`.
-4.  **Extracción de Características:** Transformación del texto a formato numérico con `TfidfVectorizer(stop_words='english')`.
+4.  **Extracción de Características:** Transformación del texto a formato numérico con `TfidfVectorizer`, ajustado en entrenamiento y aplicado al conjunto de prueba.
 5.  **Entrenamiento del Modelo:** Ajuste de un clasificador lineal `SVC(kernel='linear')`.
 6.  **Pruebas de Inferencia:** Evaluación manual del modelo ingresando frases personalizadas (ej. *"A good movie"*, *"I did not like this movie at all"*).
 7.  **Evaluación de Métricas:**
@@ -84,6 +85,7 @@ El cuaderno [`1_analisis_sentimiento.ipynb`](./1_analisis_sentimiento.ipynb) est
     *   **Puntuación F1 (*F1-Score*):** Media armónica de precisión y exhaustividad para ambas clases (`positive` y `negative`).
     *   **Reporte de Clasificación:** Tabla detallada con *precision*, *recall* y *f1-score*.
     *   **Matriz de Confusión:** Tabla que muestra la distribución de verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos.
+8.  **Comparación de modelos:** Ajuste de `LogisticRegression`, `GaussianNB` y `DecisionTreeClassifier` sobre los mismos vectores, y contraste de accuracy, F1 y matriz de confusión frente a la SVM.
 
 ---
 
